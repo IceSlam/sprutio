@@ -1,0 +1,571 @@
+/*
+ * Sprut.io UI refresh
+ * Cosmetic layer only: keeps legacy ExtJS/Backbone logic intact.
+ */
+:root {
+  --sprut-bg: #eef4ff;
+  --sprut-bg-deep: #dfe9ff;
+  --sprut-surface: rgba(255, 255, 255, 0.9);
+  --sprut-surface-strong: #ffffff;
+  --sprut-surface-muted: #f5f8ff;
+  --sprut-border: rgba(124, 139, 170, 0.24);
+  --sprut-border-strong: rgba(82, 104, 148, 0.32);
+  --sprut-text: #172033;
+  --sprut-muted: #6b7894;
+  --sprut-primary: #2368ff;
+  --sprut-primary-strong: #0d4fe8;
+  --sprut-primary-soft: rgba(35, 104, 255, 0.12);
+  --sprut-success: #10b981;
+  --sprut-danger: #ef4444;
+  --sprut-shadow: 0 24px 70px rgba(27, 43, 78, 0.18);
+  --sprut-shadow-soft: 0 14px 34px rgba(27, 43, 78, 0.1);
+  --sprut-radius-lg: 28px;
+  --sprut-radius-md: 18px;
+  --sprut-radius-sm: 12px;
+  --sprut-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  min-height: 100%;
+  font-family: var(--sprut-font);
+  color: var(--sprut-text);
+}
+
+body.sprutio-login-page,
+body.sprutio-app-page {
+  background:
+    radial-gradient(circle at 10% 12%, rgba(35, 104, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 84% 8%, rgba(16, 185, 129, 0.14), transparent 30%),
+    linear-gradient(135deg, #f8fbff 0%, var(--sprut-bg) 48%, var(--sprut-bg-deep) 100%);
+  overflow-x: hidden;
+}
+
+body.sprutio-login-page:before,
+body.sprutio-app-page:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(35, 104, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 104, 255, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.08));
+}
+
+/* Login */
+.sprutio-login-page .vertical-center {
+  min-height: 100vh;
+  margin: 0;
+  padding: 48px 16px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.sprutio-login-page #login-container {
+  width: 100%;
+}
+
+.sprutio-login-layout {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+}
+
+.sprutio-login-hero,
+.sprutio-login-card {
+  position: relative;
+  border: 1px solid var(--sprut-border);
+  border-radius: var(--sprut-radius-lg);
+  background: var(--sprut-surface);
+  box-shadow: var(--sprut-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.sprutio-login-hero {
+  flex: 1 1 56%;
+  min-height: 560px;
+  padding: 46px;
+  overflow: hidden;
+}
+
+.sprutio-login-hero:after {
+  content: "";
+  position: absolute;
+  right: -140px;
+  bottom: -150px;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(35, 104, 255, 0.16), rgba(16, 185, 129, 0.2));
+}
+
+.sprutio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--sprut-primary-soft);
+  color: var(--sprut-primary-strong);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.sprutio-login-hero h1 {
+  margin: 28px 0 16px;
+  max-width: 620px;
+  font-size: 56px;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+  color: var(--sprut-text);
+}
+
+.sprutio-login-hero p {
+  max-width: 560px;
+  color: var(--sprut-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.sprutio-feature-grid {
+  position: relative;
+  z-index: 1;
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sprutio-feature {
+  min-height: 128px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.6);
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 14px 28px rgba(27, 43, 78, 0.08);
+}
+
+.sprutio-feature i {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--sprut-primary), #61a0ff);
+  margin-bottom: 14px;
+}
+
+.sprutio-feature strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.sprutio-feature span {
+  color: var(--sprut-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sprutio-login-card {
+  flex: 0 0 420px;
+  padding: 34px;
+  align-self: center;
+}
+
+.sprutio-login-logo {
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+.sprutio-login-logo img {
+  max-width: 240px;
+  width: 76%;
+  height: auto;
+}
+
+.sprutio-login-title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.sprutio-login-subtitle {
+  margin: 0 0 28px;
+  color: var(--sprut-muted);
+  text-align: center;
+  font-size: 14px;
+}
+
+.sprutio-login-page .form-group {
+  margin-bottom: 18px;
+}
+
+.sprutio-login-page .control-label {
+  margin-bottom: 8px;
+  color: #41516f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sprutio-login-page .form-control {
+  height: 48px;
+  padding: 11px 14px;
+  color: var(--sprut-text);
+  border: 1px solid var(--sprut-border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.86);
+  box-shadow: none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.sprutio-login-page .form-control:focus {
+  border-color: rgba(35, 104, 255, .62);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(35, 104, 255, .12);
+}
+
+.sprutio-language-switch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 8px 0 24px;
+}
+
+.sprutio-language-switch label {
+  margin: 0;
+}
+
+.sprutio-language-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sprutio-language-switch span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--sprut-border);
+  background: rgba(255,255,255,.76);
+  color: #42506a;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease, color .16s ease;
+}
+
+.sprutio-language-switch span:hover {
+  transform: translateY(-1px);
+  border-color: var(--sprut-border-strong);
+}
+
+.sprutio-language-switch input:checked + span {
+  color: var(--sprut-primary-strong);
+  border-color: rgba(35, 104, 255, .42);
+  background: var(--sprut-primary-soft);
+}
+
+.sprutio-login-page .btn-primary {
+  min-height: 50px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--sprut-primary), var(--sprut-primary-strong));
+  box-shadow: 0 16px 30px rgba(35, 104, 255, .28);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+
+.sprutio-login-page .btn-primary:hover,
+.sprutio-login-page .btn-primary:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 38px rgba(35, 104, 255, .36);
+}
+
+.sprutio-login-page .alert,
+.sprutio-login-page .help-block {
+  border-radius: 14px;
+}
+
+.sprutio-login-page #copy {
+  position: fixed;
+  right: 18px;
+  bottom: 14px;
+  width: auto;
+  z-index: 2;
+}
+
+.sprutio-login-page #copy p {
+  margin: 0;
+}
+
+.sprutio-login-page #copy a {
+  color: var(--sprut-muted);
+}
+
+/* App loader */
+.sprutio-app-page {
+  background-repeat: no-repeat;
+}
+
+.sprutio-app-page .sprutio-app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sprutio-app-loader-card {
+  width: min(420px, calc(100vw - 32px));
+  padding: 34px;
+  border: 1px solid var(--sprut-border);
+  border-radius: var(--sprut-radius-lg);
+  background: var(--sprut-surface);
+  box-shadow: var(--sprut-shadow);
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+
+.sprutio-app-loader-mark {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--sprut-primary), #61a0ff);
+  box-shadow: 0 16px 30px rgba(35, 104, 255, .24);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.sprutio-app-loader-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.sprutio-app-loader-subtitle {
+  margin: 0;
+  color: var(--sprut-muted);
+  font-size: 14px;
+}
+
+/* Legacy ExtJS skin layer */
+.sprutio-app-page .x-body,
+.sprutio-app-page .x-panel,
+.sprutio-app-page .x-window,
+.sprutio-app-page .x-grid3,
+.sprutio-app-page .x-grid3-scroller,
+.sprutio-app-page .x-layout-split,
+.sprutio-app-page .x-border-layout-ct,
+.sprutio-app-page .x-tab-panel-body,
+.sprutio-app-page .x-panel-body {
+  font-family: var(--sprut-font) !important;
+}
+
+.sprutio-app-page .x-border-layout-ct,
+.sprutio-app-page .x-panel-body,
+.sprutio-app-page .x-grid3,
+.sprutio-app-page .x-grid3-scroller {
+  background: transparent !important;
+}
+
+.sprutio-app-page .x-panel,
+.sprutio-app-page .x-window,
+.sprutio-app-page .x-menu {
+  border-color: var(--sprut-border) !important;
+  border-radius: var(--sprut-radius-sm) !important;
+  box-shadow: var(--sprut-shadow-soft) !important;
+  overflow: hidden;
+}
+
+.sprutio-app-page .x-panel-header,
+.sprutio-app-page .x-window-tl,
+.sprutio-app-page .x-window-tr,
+.sprutio-app-page .x-window-tc,
+.sprutio-app-page .x-toolbar,
+.sprutio-app-page .x-tab-panel-header,
+.sprutio-app-page .x-grid3-header {
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,248,255,.94)) !important;
+  border-color: var(--sprut-border) !important;
+  color: var(--sprut-text) !important;
+}
+
+.sprutio-app-page .x-toolbar {
+  min-height: 42px;
+  padding: 5px 8px !important;
+}
+
+.sprutio-app-page .x-panel-header {
+  min-height: 36px;
+  padding: 9px 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+}
+
+.sprutio-app-page .x-btn,
+.sprutio-app-page .x-btn button,
+.sprutio-app-page .x-btn-text {
+  font-family: var(--sprut-font) !important;
+}
+
+.sprutio-app-page .x-btn,
+.sprutio-app-page .x-btn-left,
+.sprutio-app-page .x-btn-right,
+.sprutio-app-page .x-btn-center {
+  background-image: none !important;
+  border-color: transparent !important;
+}
+
+.sprutio-app-page .x-btn-center {
+  padding: 4px 8px !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.74) !important;
+  box-shadow: inset 0 0 0 1px var(--sprut-border);
+  transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+.sprutio-app-page .x-btn-over .x-btn-center,
+.sprutio-app-page .x-btn-click .x-btn-center,
+.sprutio-app-page .x-btn-pressed .x-btn-center {
+  background: var(--sprut-primary-soft) !important;
+  box-shadow: inset 0 0 0 1px rgba(35,104,255,.36);
+}
+
+.sprutio-app-page .x-grid3-row {
+  border-color: rgba(124,139,170,.14) !important;
+  background: rgba(255,255,255,.72) !important;
+}
+
+.sprutio-app-page .x-grid3-row-alt {
+  background: rgba(245,248,255,.76) !important;
+}
+
+.sprutio-app-page .x-grid3-row-over {
+  background: rgba(35,104,255,.08) !important;
+}
+
+.sprutio-app-page .x-grid3-row-selected {
+  background: rgba(35,104,255,.14) !important;
+  border-color: rgba(35,104,255,.28) !important;
+}
+
+.sprutio-app-page .x-grid3-hd-row td,
+.sprutio-app-page .x-grid3-header-offset {
+  color: #41516f !important;
+  font-weight: 800 !important;
+  background: rgba(245,248,255,.96) !important;
+  border-color: var(--sprut-border) !important;
+}
+
+.sprutio-app-page .x-form-field,
+.sprutio-app-page input.x-form-text,
+.sprutio-app-page textarea.x-form-field {
+  border-radius: 10px !important;
+  border-color: var(--sprut-border) !important;
+  background: #fff !important;
+  color: var(--sprut-text) !important;
+  box-shadow: none !important;
+}
+
+.sprutio-app-page .x-form-field:focus,
+.sprutio-app-page input.x-form-text:focus,
+.sprutio-app-page textarea.x-form-field:focus {
+  border-color: rgba(35,104,255,.58) !important;
+  box-shadow: 0 0 0 3px rgba(35,104,255,.1) !important;
+}
+
+.sprutio-app-page .x-menu {
+  padding: 7px !important;
+  background: rgba(255,255,255,.96) !important;
+  backdrop-filter: blur(16px);
+}
+
+.sprutio-app-page .x-menu-list-item,
+.sprutio-app-page .x-menu-item {
+  border-radius: 9px !important;
+}
+
+.sprutio-app-page .x-menu-item-active {
+  background: var(--sprut-primary-soft) !important;
+  border-color: transparent !important;
+}
+
+.sprutio-app-page .x-tab-strip span.x-tab-strip-text {
+  font-family: var(--sprut-font) !important;
+  font-weight: 800;
+}
+
+.sprutio-app-page .x-tab-strip-active span.x-tab-strip-text {
+  color: var(--sprut-primary-strong) !important;
+}
+
+.sprutio-app-page .x-window {
+  background: rgba(255,255,255,.94) !important;
+  backdrop-filter: blur(18px);
+}
+
+.sprutio-app-page .x-mask {
+  background: rgba(18, 28, 48, .34) !important;
+}
+
+@media (max-width: 991px) {
+  .sprutio-login-layout {
+    display: block;
+    max-width: 520px;
+  }
+
+  .sprutio-login-hero {
+    display: none;
+  }
+
+  .sprutio-login-card {
+    width: 100%;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sprutio-login-page .vertical-center {
+    padding: 24px 12px;
+  }
+
+  .sprutio-login-card {
+    border-radius: 22px;
+    padding: 22px;
+  }
+
+  .sprutio-login-title {
+    font-size: 23px;
+  }
+
+  .sprutio-language-switch {
+    grid-template-columns: 1fr;
+  }
+
+  .sprutio-login-page #copy {
+    position: static;
+    width: 100%;
+    padding-bottom: 16px;
+  }
+}
