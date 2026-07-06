@@ -2,23 +2,13 @@
 <html lang="{{language}}">
 <head>
     <meta charset="UTF-8">
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <link rel="apple-touch-icon-precomposed" href="/static/apple-touch-icon-precomposed.png">
-    <!-- For the iPad mini and the first- and second-generation iPad on iOS ? 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/apple-touch-icon-72x72-precomposed.png">
-    <!-- For iPhone with high-resolution Retina display running iOS ? 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/apple-touch-icon-114x114-precomposed.png">
-    <!-- For iPhone with high-resolution Retina display running iOS ? 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/apple-touch-icon-120x120-precomposed.png">
-    <!-- For iPad with high-resolution Retina display running iOS ? 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/apple-touch-icon-144x144-precomposed.png">
-    <!-- For iPad with high-resolution Retina display running iOS ? 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/apple-touch-icon-152x152-precomposed.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="/favicon@2x.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon@2x.ico" type="image/x-icon">
 
     <link href="/static/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/ui-refresh.css" rel="stylesheet" type="text/css"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css'>
 
     <script src="/static/lib/jquery/dist/jquery.min.js"></script>
@@ -36,45 +26,78 @@
 
     <script src="/static/js/bb.js"></script>
     <script src="/static/js/views/login.js"></script>
-
     <script src="/static/js/main.js"></script>
     <title>SPRUT.io</title>
 </head>
-<body>
+<body class="sprutio-login-page">
 <div class="jumbotron vertical-center">
-    <div id="login-container" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-                    <form id="login-form" class="form form-horizontal">
-                        <div class="form-group">
-                            <img src="/logo.png" style="width: 100%;">
-                        </div>
-                        <div class="form-group">
-                            <label for="input-login" class="control-label">{{ _('Login') }}:</label>
-                            <input type="text" id="input-login" class="form-control" name="login" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-password" class="control-label">{{ _('Password') }}:</label>
-                            <input type="password" id="input-password" class="form-control" name="password" required>
-                        </div>
-                        <div class="form-group" align="center">
-                            <label>
-                                <input type="radio" id="input-language" name="language" value="en" checked=true> <img src="static/en.png" height=32>
-                            </label>
-                            <label>
-                                <input type="radio" id="input-language" name="language" value="ru"> <img src="static/ru.png" height=32>
-                            </label>
-                            <label>
-                                <input type="radio" id="input-language" name="language" value="de"> <img src="static/de.png" height=32>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <button id="login-submit" class="btn btn-lg btn-primary btn-block" type="submit">{{ _('Sign In') }}</button>
-                        </div>
-                    </form>
+    <div id="login-container">
+        <div class="sprutio-login-layout">
+            <section class="sprutio-login-hero">
+                <span class="sprutio-badge"><i class="fa fa-shield"></i> Secure workspace</span>
+                <h1>Modern file management for your server</h1>
+                <p>Sprut.io keeps your files, code and server workspace in one fast browser interface.</p>
+
+                <div class="sprutio-feature-grid">
+                    <div class="sprutio-feature">
+                        <i class="fa fa-columns"></i>
+                        <strong>Dual panels</strong>
+                        <span>Comfortable file navigation with familiar workflow.</span>
+                    </div>
+                    <div class="sprutio-feature">
+                        <i class="fa fa-code"></i>
+                        <strong>Code editor</strong>
+                        <span>Edit configuration and source files directly.</span>
+                    </div>
+                    <div class="sprutio-feature">
+                        <i class="fa fa-search"></i>
+                        <strong>Fast search</strong>
+                        <span>Find files and content without leaving the workspace.</span>
+                    </div>
+                    <div class="sprutio-feature">
+                        <i class="fa fa-cloud"></i>
+                        <strong>Server access</strong>
+                        <span>Manage your environment from any modern browser.</span>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="sprutio-login-card">
+                <form id="login-form" class="form">
+                    <div class="sprutio-login-logo">
+                        <img src="/logo.png" alt="SPRUT.io">
+                    </div>
+                    <h2 class="sprutio-login-title">Welcome back</h2>
+                    <p class="sprutio-login-subtitle">Sign in to continue to your file manager</p>
+
+                    <div class="form-group">
+                        <label for="input-login" class="control-label">{{ _('Login') }}</label>
+                        <input type="text" id="input-login" class="form-control" name="login" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-password" class="control-label">{{ _('Password') }}</label>
+                        <input type="password" id="input-password" class="form-control" name="password" required>
+                    </div>
+
+                    <div class="sprutio-language-switch">
+                        <label>
+                            <input type="radio" name="language" value="en" checked="checked">
+                            <span><img src="static/en.png" height="22"> EN</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="language" value="ru">
+                            <span><img src="static/ru.png" height="22"> RU</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="language" value="de">
+                            <span><img src="static/de.png" height="22"> DE</span>
+                        </label>
+                    </div>
+
+                    <button id="login-submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Loading..." type="submit">{{ _('Sign In') }}</button>
+                </form>
+            </section>
         </div>
     </div>
 </div>
