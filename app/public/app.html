@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>File Manager - Beget</title>
-    <meta name="viewport" content="width=device-width">
+    <title>Sprut.io File Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2368ff">
     <link rel="stylesheet" href="/fm/ext/src/ux/container/ButtonSegment.css">
     <link rel="stylesheet" href="/fm/ext/src/ux/upload/css/upload.css">
 
@@ -90,8 +91,15 @@
         });
     </script>
     <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/ui-refresh.css">
 </head>
-<body style="background: url('/fm/resources/images/fm_load.png') center 250px no-repeat" data-debug="0">
-
+<body class="sprutio-app-page" data-debug="0">
+    <div class="sprutio-app-loader" aria-hidden="true">
+        <div class="sprutio-app-loader-card">
+            <div class="sprutio-app-loader-mark"><i class="fa fa-folder-open-o"></i></div>
+            <p class="sprutio-app-loader-title">Sprut.io</p>
+            <p class="sprutio-app-loader-subtitle">Loading secure file workspace…</p>
+        </div>
+    </div>
 </body>
 </html>
